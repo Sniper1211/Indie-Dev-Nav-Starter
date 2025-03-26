@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevNavigator - 出海开发者工具导航</title>
+    <style>
+        /* 极简风格CSS */
+        :root {
+            --primary: #2F80ED;
+            --bg: #f8f9fa;
+            --text: #2d3436;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* 头部样式 */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 1rem auto;
+            position: relative;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #searchInput:focus {
+            border-color: var(--primary);
+        }
+
+        /* 工具分类卡片 */
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+        }
+
+        .category-title {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tool-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-item {
+            padding: 1rem;
+            border-radius: 8px;
+            background: var(--bg);
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .tool-item:hover {
+            transform: translateY(-2px);
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(47,128,237,0.1);
+        }
+
+        .tool-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .tool-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 DevNavigator</h1>
+            <p>独立开发者出海工具箱 - 聚焦合规与效率</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索工具或分类...">
+            </div>
+        </header>
+
+        <div id="toolsContainer"></div>
+    </div>
+
+    <script>
+        // 工具数据
+        const toolData = [
+            {
+                category: '云服务',
+                tools: [
+                    {name: 'Vercel', url: 'https://vercel.com', icon: 'https://i.imgur.com/1D8VqHt.png'},
+                    {name: 'AWS Lightsail', url: 'https://aws.amazon.com/lightsail', icon: 'https://i.imgur.com/3Q1Yn3F.png'},
+                    {name: 'Supabase', url: 'https://supabase.com', icon: 'https://i.imgur.com/0GHbD4D.png'}
+                ]
+            },
+            {
+                category: '支付合规',
+                tools: [
+                    {name: 'Stripe Atlas', url: 'https://stripe.com/atlas', icon: 'https://i.imgur.com/8UZtwy4.png'},
+                    {name: 'Paddle', url: 'https://paddle.com', icon: 'https://i.imgur.com/m5eQ0w7.png'},
+                    {name: 'Quaderno', url: 'https://quaderno.io', icon: 'https://i.imgur.com/1Cz8XHr.png'}
+                ]
+            },
+            // 更多数据...
+        ];
+
+        // 渲染工具列表
+        function renderTools(data) {
+            const container = document.getElementById('toolsContainer');
+            container.innerHTML = data.map(cat => `
+                <div class="category-card">
+                    <h2 class="category-title">${cat.category}</h2>
+                    <div class="tool-list">
+                        ${cat.tools.map(tool => `
+                            <a href="${tool.url}" target="_blank" class="tool-item">
+                                <img src="${tool.icon}" class="tool-icon" alt="${tool.name}">
+                                <span>${tool.name}</span>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = toolData.map(cat => ({
+                ...cat,
+                tools: cat.tools.filter(tool => 
+                    tool.name.toLowerCase().includes(searchTerm) || 
+                    cat.category.toLowerCase().includes(searchTerm)
+            })).filter(cat => cat.tools.length > 0);
+            
+            renderTools(filtered);
+        });
+
+        // 初始化加载
+        renderTools(toolData);
+    </script>
+</body>
+</html>
