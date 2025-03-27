@@ -23,6 +23,62 @@ const tools = [
         icon: 'https://static.termly.io/img/logo-square.png',
         tags: ['GDPR', '隐私政策', '合规'],
         desc: '自动化生成符合各国法律要求的隐私政策'
+    },
+    {
+        category: '云服务',
+        name: 'AWS',
+        url: 'https://aws.amazon.com',
+        icon: 'https://www.svgrepo.com/show/448234/aws.svg',
+        tags: ['云计算', '全球部署', '企业级'],
+        desc: '全球领先的云计算平台，提供全面的云服务解决方案'
+    },
+    {
+        category: '支付',
+        name: 'PayPal',
+        url: 'https://www.paypal.com',
+        icon: 'https://www.svgrepo.com/show/448234/paypal.svg',
+        tags: ['跨境支付', '安全可靠', '全球覆盖'],
+        desc: '全球最大的在线支付平台之一，支持200多个国家和地区'
+    },
+    {
+        category: '合规',
+        name: 'OneTrust',
+        url: 'https://www.onetrust.com',
+        icon: 'https://www.onetrust.com/wp-content/themes/onetrust/assets/images/logo.svg',
+        tags: ['隐私管理', '合规自动化', '数据保护'],
+        desc: '企业级隐私管理和数据治理平台'
+    },
+    {
+        category: '云服务',
+        name: 'Cloudflare',
+        url: 'https://www.cloudflare.com',
+        icon: 'https://www.svgrepo.com/show/448234/cloudflare.svg',
+        tags: ['CDN', 'DDoS防护', 'SSL证书'],
+        desc: '全球领先的CDN和安全服务提供商'
+    },
+    {
+        category: '支付',
+        name: 'Square',
+        url: 'https://squareup.com',
+        icon: 'https://www.svgrepo.com/show/448234/square.svg',
+        tags: ['移动支付', 'POS系统', '电商集成'],
+        desc: '创新的支付和商业解决方案提供商'
+    },
+    {
+        category: '合规',
+        name: 'TrustArc',
+        url: 'https://www.trustarc.com',
+        icon: 'https://www.trustarc.com/wp-content/themes/trustarc/assets/images/logo.svg',
+        tags: ['隐私认证', '合规评估', '风险管理'],
+        desc: '全球领先的隐私管理和合规解决方案'
+    },
+    {
+        category: '云服务',
+        name: 'DigitalOcean',
+        url: 'https://www.digitalocean.com',
+        icon: 'https://www.svgrepo.com/show/448234/digitalocean.svg',
+        tags: ['VPS', '对象存储', '开发者友好'],
+        desc: '简单易用的云计算平台，专注于开发者体验'
     }
 ];
 
