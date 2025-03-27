@@ -208,7 +208,22 @@ header {
     margin-top: 3rem;
     padding: 2rem 0;
     border-top: 1px solid var(--border);
-    background: linear-gradient(to bottom, transparent, var(--background));
+    background: linear-gradient(135deg, hsl(221, 83%, 53%, 0.05), hsl(221, 83%, 53%, 0.1));
+    position: relative;
+    overflow: hidden;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, hsl(221, 83%, 53%, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, hsl(221, 83%, 53%, 0.05) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .footer-content {
@@ -216,13 +231,15 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-section h3 {
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
-    color: var(--text-primary);
+    color: hsl(221, 83%, 53%);
 }
 
 .footer-section p {
@@ -250,7 +267,7 @@ header {
 }
 
 .footer-link:hover {
-    color: var(--primary);
+    color: hsl(221, 83%, 53%);
 }
 
 .footer-link::after {
@@ -260,7 +277,7 @@ header {
     height: 1px;
     bottom: -1px;
     left: 0;
-    background-color: var(--primary);
+    background: linear-gradient(90deg, hsl(221, 83%, 53%), hsl(221, 83%, 45%));
     transition: width 0.2s ease-in-out;
 }
 
@@ -270,7 +287,9 @@ header {
 
 .footer-bottom {
     padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid hsl(221, 83%, 53%, 0.1);
+    position: relative;
+    z-index: 1;
 }
 
 .footer-stats {
@@ -295,7 +314,7 @@ header {
 .stat-icon {
     width: 20px;
     height: 20px;
-    color: var(--primary);
+    color: hsl(221, 83%, 53%);
     transition: transform 0.3s ease;
 }
 
@@ -306,10 +325,8 @@ header {
 .stat-value {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--text-primary);
-    background: linear-gradient(45deg, var(--primary), var(--primary-hover));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: hsl(221, 83%, 53%);
+    text-shadow: 0 0 20px hsl(221, 83%, 53%, 0.2);
 }
 
 .stat-label {
