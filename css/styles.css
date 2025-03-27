@@ -33,6 +33,7 @@ body {
 }
 
 .container {
+    width: 100%;
     max-width: 1440px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
@@ -127,9 +128,11 @@ header {
 /* 工具卡片精致版 */
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     padding: 0.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
 }
 
 .tool-card {
@@ -140,6 +143,8 @@ header {
     transition: all 0.2s;
     text-decoration: none;
     color: inherit;
+    display: block;
+    height: 100%;
 }
 
 .tool-card:hover {
