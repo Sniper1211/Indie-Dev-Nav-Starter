@@ -16,17 +16,24 @@ function searchTools(e) {
         t.category.toLowerCase().includes(keyword) ||
         t.tags.some(tag => tag.toLowerCase().includes(keyword))
     );
-    renderTools(results);
+    renderTools(results, keyword); // 添加关键字参数
 }
 
-function renderTools(tools) {
-    const grid = document.getElementById('toolsGrid');
+function renderTools(tools, highlightText = '') {
+    
+const grid = document.getElementById('toolsGrid');
     grid.innerHTML = tools.map(tool => `
         <a href="${tool.url}" target="_blank" class="tool-card">
             <div class="tool-header">
-                <img src="${tool.icon}" class="tool-icon" alt="${tool.name}">
+                <img src="${tool.localIcon || tool.icon}" 
+                     class="tool-icon" 
+                     alt="${tool.name}"
+                     loading="lazy"
+                     onerror="this.onerror=null;this.src='images/default-tool-icon.svg';this.nextElementSibling.style.display='none'"
+                >
+                <img src="images/default-tool-icon.svg" class="icon-fallback" style="display:none">
                 <div>
-                    <div class="tool-title">${tool.name}</div>
+                    <div class="tool-title">${highlightText ? tool.name.replace(new RegExp(highlightText, 'gi'), match => `<mark>${match}</mark>`) : tool.name}</div>
                     <div class="tool-category">${tool.category}</div>
                 </div>
             </div>
@@ -63,8 +70,18 @@ function init() {
         });
     });
 
-    document.getElementById('searchInput').addEventListener('input', searchTools);
+    // 添加防抖函数
+    function debounce(func, delay = 300) {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+    
+    // 修改事件监听
+    document.getElementById('searchInput').addEventListener('input', debounce(searchTools));
 }
 
 // 启动应用
-document.addEventListener('DOMContentLoaded', init); 
+document.addEventListener('DOMContentLoaded', init);

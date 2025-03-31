@@ -4,7 +4,7 @@ const tools = [
         category: '云服务',
         name: 'Vercel',
         url: 'https://vercel.com',
-        icon: 'https://www.svgrepo.com/show/327408/logo-vercel.svg',
+        icon: 'https://api.iconify.design/simple-icons/vercel.svg?color=%23000000',
         tags: ['部署', 'Serverless', '全球CDN'],
         desc: '面向现代Web应用的云平台，支持自动Git部署'
     },
@@ -12,7 +12,7 @@ const tools = [
         category: '支付',
         name: 'Stripe',
         url: 'https://stripe.com',
-        icon: 'https://www.svgrepo.com/show/349540/stripe.svg',
+        icon: 'https://icons.duckduckgo.com/ip3/stripe.com.ico',
         tags: ['支付网关', '订阅系统', '全球覆盖'],
         desc: '支持135种货币的全球化支付解决方案'
     },
@@ -20,7 +20,7 @@ const tools = [
         category: '合规',
         name: 'Termly',
         url: 'https://termly.io',
-        icon: 'https://static.termly.io/img/logo-square.png',
+        icon: 'https://icons.duckduckgo.com/ip3/termly.io.ico',
         tags: ['GDPR', '隐私政策', '合规'],
         desc: '自动化生成符合各国法律要求的隐私政策'
     },
@@ -28,7 +28,7 @@ const tools = [
         category: '云服务',
         name: 'AWS',
         url: 'https://aws.amazon.com',
-        icon: 'https://www.svgrepo.com/show/448234/aws.svg',
+        icon: 'https://icons.duckduckgo.com/ip3/aws.amazon.com.ico',
         tags: ['云计算', '全球部署', '企业级'],
         desc: '全球领先的云计算平台，提供全面的云服务解决方案'
     },
@@ -88,4 +88,4 @@ const categoryIcons = {
     '云服务': '☁️',
     '支付': '💳',
     '合规': '⚖️'
-}; 
+};
