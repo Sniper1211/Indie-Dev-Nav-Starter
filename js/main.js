@@ -20,22 +20,12 @@ function searchTools(e) {
 }
 
 function renderTools(tools, highlightText = '') {
-    
-const grid = document.getElementById('toolsGrid');
+    const grid = document.getElementById('toolsGrid');
     grid.innerHTML = tools.map(tool => `
         <a href="${tool.url}" target="_blank" class="tool-card">
             <div class="tool-header">
-                <img src="${tool.localIcon || tool.icon}" 
-                     class="tool-icon" 
-                     alt="${tool.name}"
-                     loading="lazy"
-                     onerror="this.onerror=null;this.src='images/default-tool-icon.svg';this.nextElementSibling.style.display='none'"
-                >
-                <img src="images/default-tool-icon.svg" class="icon-fallback" style="display:none">
-                <div>
-                    <div class="tool-title">${highlightText ? tool.name.replace(new RegExp(highlightText, 'gi'), match => `<mark>${match}</mark>`) : tool.name}</div>
-                    <div class="tool-category">${tool.category}</div>
-                </div>
+                <div class="tool-title">${highlightText ? tool.name.replace(new RegExp(highlightText, 'gi'), match => `<mark>${match}</mark>`) : tool.name}</div>
+                <div class="tool-category">${tool.category}</div>
             </div>
             <p class="tool-description">${tool.desc}</p>
             <div class="tool-tags">
