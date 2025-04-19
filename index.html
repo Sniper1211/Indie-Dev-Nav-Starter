@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <header>
+        <aside class="sidebar">
             <a href="#" class="logo">
                 <span class="logo-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -18,15 +18,13 @@
                 </span>
                 <span class="logo-text">DevToolbox</span>
             </a>
-            
+            <nav class="category-nav" id="categoryNav"></nav>
+        </aside>
+        
+        <main class="main-content">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="搜索工具、分类或标签...">
             </div>
-        </header>
-
-        <aside class="sidebar">
-            <nav class="category-nav" id="categoryNav"></nav>
-        </aside>
         
         <main class="main-content">
             <div class="tools-grid" id="toolsGrid"></div>
