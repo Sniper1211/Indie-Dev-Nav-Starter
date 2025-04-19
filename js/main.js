@@ -5,7 +5,18 @@ function getCategoryIcon(category) {
 
 // 工具过滤与渲染逻辑
 function filterTools(category) {
-    const filtered = category === '全部' ? tools : tools.filter(t => t.category === category);
+    let filtered = category === '全部' ? tools : tools.filter(t => t.category === category);
+    
+    // 如果是"全部"分类，则随机排序
+    if (category === '全部') {
+        // 使用Fisher-Yates洗牌算法进行随机排序
+        filtered = [...filtered]; // 创建副本以避免修改原数组
+        for (let i = filtered.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+        }
+    }
+    
     renderTools(filtered);
 }
 
