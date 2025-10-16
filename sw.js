@@ -2,12 +2,12 @@ const CACHE_VERSION = 'v1';
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const IMAGE_CACHE = `img-${CACHE_VERSION}`;
 
+// 适配 GitHub Pages 仓库子路径：使用相对 sw.js 的绝对 URL
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/css/styles.css',
-  '/js/main.js',
-  '/js/tools.js'
+  new URL('./index.html', self.location).toString(),
+  new URL('./css/styles.css', self.location).toString(),
+  new URL('./js/main.js', self.location).toString(),
+  new URL('./js/tools.js', self.location).toString()
 ];
 
 self.addEventListener('install', (event) => {
@@ -59,7 +59,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   const url = new URL(request.url);
-  const isStatic = STATIC_ASSETS.some((p) => url.pathname === p);
+  const isStatic = STATIC_ASSETS.includes(request.url);
   if (isStatic) {
     event.respondWith(
       caches.match(request).then((cached) => {
