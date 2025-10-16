@@ -37,12 +37,14 @@ function renderTools(tools, highlightText = '') {
         let originIcon = '';
         let duckIcon = '';
         let googleIcon = '';
+        let yandexIcon = '';
         let fallbackSvg = '';
         try {
             const u = new URL(tool.url);
             originIcon = new URL('/favicon.ico', u.origin).href;
             duckIcon = `https://icons.duckduckgo.com/ip3/${u.hostname}.ico`;
             googleIcon = `https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(u.origin)}`;
+            yandexIcon = `https://favicon.yandex.net/favicon/${u.hostname}`;
             fallbackSvg = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
                 `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">\n` +
                 `<rect width="24" height="24" rx="4" fill="#E9EEF9"/>\n` +
@@ -57,15 +59,15 @@ function renderTools(tools, highlightText = '') {
             ? tool.name.replace(new RegExp(highlightText, 'gi'), match => `<mark>${match}</mark>`) 
             : tool.name;
 
-        // 采用聚合优先的加载顺序：DuckDuckGo -> Google -> Origin -> SVG占位
-        const initialSrc = duckIcon || googleIcon || originIcon || fallbackSvg;
-        const onErrorChain = `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=null; this.src='${fallbackSvg}'}; this.src='${originIcon}'}; this.src='${googleIcon}'};`;
+        // 采用聚合优先的加载顺序（兼顾中国网络）：Yandex -> DuckDuckGo -> Google -> Origin -> SVG占位
+        const initialSrc = yandexIcon || duckIcon || googleIcon || originIcon || fallbackSvg;
+        const onErrorChain = `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=null; this.src='${fallbackSvg}'}; this.src='${originIcon}'}; this.src='${googleIcon}'}; this.src='${duckIcon}'};`;
 
         return `
         <a href="${tool.url}" target="_blank" class="tool-card">
             <div class="tool-header">
                 <div class="tool-title-row">
-                    <img class="tool-icon" src="${initialSrc}" alt="${tool.name} logo" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="${onErrorChain} this.src='${googleIcon}';" />
+                    <img class="tool-icon" src="${initialSrc}" alt="${tool.name} logo" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="${onErrorChain} this.src='${duckIcon}';" />
                     <div class="tool-title">${titleHtml}</div>
                 </div>
                 <div class="tool-category">${tool.category}</div>

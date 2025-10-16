@@ -94,7 +94,8 @@
     <script src="js/main.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch(console.error);
+        // GitHub Pages 仓库路径不是站点根，用相对路径以确保作用域正确
+        navigator.serviceWorker.register('./sw.js').catch(console.error);
       }
 
       // 链接策略：外部链接默认新标签，站内链接当前页
