@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevToolBox - 出海开发者导航</title>
+    <base target="_blank">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -95,6 +96,42 @@
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js').catch(console.error);
       }
+
+      // 链接策略：外部链接默认新标签，站内链接当前页
+      function applyLinkTargets() {
+        const links = document.querySelectorAll('a[href]');
+        links.forEach(link => {
+          const hrefAttr = link.getAttribute('href');
+          if (!hrefAttr) return;
+
+          let url;
+          try {
+            url = new URL(hrefAttr, window.location.href);
+          } catch (e) {
+            // 非法或不可解析的 href，忽略
+            return;
+          }
+
+          const isHash = hrefAttr.startsWith('#');
+          const isSameOrigin = url.origin === window.location.origin;
+
+          if (isHash || isSameOrigin) {
+            link.setAttribute('target', '_self');
+          } else {
+            if (!link.hasAttribute('target')) {
+              link.setAttribute('target', '_blank');
+            }
+            const rel = (link.getAttribute('rel') || '').trim();
+            const parts = new Set(rel.split(/\s+/).filter(Boolean));
+            parts.add('noopener');
+            parts.add('noreferrer');
+            link.setAttribute('rel', Array.from(parts).join(' '));
+          }
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', applyLinkTargets);
+      document.addEventListener('tools-rendered', applyLinkTargets);
     </script>
-</body>
+  </body>
 </html>

@@ -76,6 +76,8 @@ function renderTools(tools, highlightText = '') {
             </div>
         </a>`;
     }).join('');
+    // 渲染完成后派发事件，便于页面重新应用链接策略
+    document.dispatchEvent(new Event('tools-rendered'));
 }
 
 // 初始化逻辑
