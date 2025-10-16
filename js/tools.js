@@ -351,6 +351,13 @@ const tools = [
         tags: ['开发工具', 'JSON', '格式化'],
         desc: '格式化和高亮显示JSON数据的浏览器扩展'  
     },
+    {
+        category: '浏览器插件',
+        name: 'PubSpy',
+        url: 'https://chromewebstore.google.com/detail/pubspyio/foknhhcbfhdhocmbapkphabgjbikofeb',
+        tags: ['Chrome扩展', 'AdSense反查', '站群分析'],
+        desc: '一键反查 AdSense 发布商ID，发现关联域名并查看 ads.txt 状态'  
+    },
     
     // 支付
     {
