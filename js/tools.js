@@ -5,7 +5,7 @@ const tools = [
         category: '开发工具',
         name: 'Visual Studio Code',
         url: 'https://code.visualstudio.com',
-        logo: 'https://code.visualstudio.com/assets/images/code-stable.png',
+        logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
         tags: ['编辑器', '开源', '跨平台'],
         desc: '微软开发的轻量级但功能强大的代码编辑器，支持多种编程语言和扩展'  
     },
@@ -192,7 +192,7 @@ const tools = [
         category: 'AI与创新',
         name: 'Midjourney',
         url: 'https://www.midjourney.com',
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Midjourney_Emblem.png',
+        logo: 'https://avatars.githubusercontent.com/midjourney',
         tags: ['AI绘画', '图像生成', '创意设计'],
         desc: '人工智能图像生成工具，通过文本描述创建高质量图像'  
     },
@@ -240,7 +240,7 @@ const tools = [
         category: 'AI与创新',
         name: 'DeepSeek',
         url: 'https://www.deepseek.com',
-        logo: 'https://unavatar.io/deepseek.com',
+        logo: 'https://avatars.githubusercontent.com/deepseek-ai',
         tags: ['AI对话', '代码生成', '开源'],
         desc: '深度求索开发的国产 AI 模型，代码能力出色，提供高性价比 API'  
     },
@@ -502,7 +502,7 @@ const tools = [
         category: '在线数据库',
         name: 'Upstash',
         url: 'https://upstash.com',
-        logo: 'https://unavatar.io/upstash.com',
+        logo: 'https://avatars.githubusercontent.com/upstash',
         tags: ['Redis', 'Kafka', 'Serverless'],
         desc: '专为无服务器应用设计的 Redis 和 Kafka 数据平台'  
     },
