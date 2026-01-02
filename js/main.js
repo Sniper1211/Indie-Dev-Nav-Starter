@@ -32,6 +32,20 @@ function searchTools(e) {
 
 function renderTools(tools, highlightText = '') {
     const grid = document.getElementById('toolsGrid');
+
+    // 空状态处理
+    if (tools.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-state">
+                <span class="empty-icon">🔍</span>
+                <h3>未找到相关工具</h3>
+                <p>尝试搜索其他关键词，或浏览分类查找</p>
+                <button class="reset-search-btn" onclick="document.getElementById('clearSearch').click()">清除搜索</button>
+            </div>
+        `;
+        return;
+    }
+
     grid.innerHTML = tools.map(tool => {
         // 构造 favicon 路径与回退
         let originIcon = '';
@@ -42,13 +56,16 @@ function renderTools(tools, highlightText = '') {
         try {
             const u = new URL(tool.url);
             originIcon = new URL('/favicon.ico', u.origin).href;
+            // 使用 DuckDuckGo 的 ip3 服务（通常质量较好）
             duckIcon = `https://icons.duckduckgo.com/ip3/${u.hostname}.ico`;
-            googleIcon = `https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(u.origin)}`;
+            // Google Favicon 服务，强制请求 128px 高清图标
+            googleIcon = `https://www.google.com/s2/favicons?sz=128&domain_url=${encodeURIComponent(u.origin)}`;
+            // Yandex Favicon 服务（有时能抓到特殊的图标）
             yandexIcon = `https://favicon.yandex.net/favicon/${u.hostname}`;
             fallbackSvg = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
-                `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">\n` +
-                `<rect width="24" height="24" rx="4" fill="#E9EEF9"/>\n` +
-                `<text x="12" y="16" font-size="12" text-anchor="middle" fill="#3B82F6">★</text>\n` +
+                `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">\n` +
+                `<rect width="48" height="48" rx="8" fill="#1e293b"/>\n` +
+                `<text x="24" y="30" font-size="20" text-anchor="middle" fill="#06b6d4">★</text>\n` +
                 `</svg>`
             );
         } catch (e) {
@@ -59,21 +76,21 @@ function renderTools(tools, highlightText = '') {
             ? tool.name.replace(new RegExp(highlightText, 'gi'), match => `<mark>${match}</mark>`) 
             : tool.name;
 
-        // 采用聚合优先的加载顺序（兼顾中国网络）：Yandex -> DuckDuckGo -> Google -> Origin -> SVG占位
-        const initialSrc = yandexIcon || duckIcon || googleIcon || originIcon || fallbackSvg;
-        const onErrorChain = `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=null; this.src='${fallbackSvg}'}; this.src='${originIcon}'}; this.src='${googleIcon}'}; this.src='${duckIcon}'};`;
+        // 调整加载顺序：优先使用 Google 高清图标 -> DuckDuckGo -> Yandex -> Origin
+        const initialSrc = googleIcon;
+        const onErrorChain = `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=null; this.src='${fallbackSvg}'}; this.src='${originIcon}'}; this.src='${yandexIcon}'}; this.src='${duckIcon}'};`;
 
         return `
         <a href="${tool.url}" target="_blank" class="tool-card">
             <div class="tool-header">
-                <div class="tool-title-row">
-                    <img class="tool-icon" src="${initialSrc}" alt="${tool.name} logo" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="${onErrorChain} this.src='${duckIcon}';" />
+                <img class="tool-icon" src="${initialSrc}" alt="${tool.name} logo" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="${onErrorChain}" />
+                <div class="tool-info">
                     <div class="tool-title">${titleHtml}</div>
+                    <div class="tool-category-tag">${tool.category}</div>
                 </div>
-                <div class="tool-category">${tool.category}</div>
             </div>
             <p class="tool-description">${tool.desc}</p>
-            <div class="tool-tags">
+            <div class="tool-footer">
                 ${tool.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
             </div>
         </a>`;
@@ -117,7 +134,50 @@ function init() {
     }
     
     // 修改事件监听
-    document.getElementById('searchInput').addEventListener('input', debounce(searchTools));
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearch');
+
+    searchInput.addEventListener('input', (e) => {
+        const val = e.target.value;
+        if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
+        debounce(searchTools)(e);
+    });
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            clearBtn.style.display = 'none';
+            searchInput.focus();
+            searchTools({ target: { value: '' } });
+        });
+    }
+
+    // 移动端菜单逻辑
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+
+    function toggleMenu() {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+    }
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileMenuClose.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        
+        // 点击分类后自动关闭
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    toggleMenu();
+                }
+            });
+        });
+    }
 }
 
 // 启动应用
