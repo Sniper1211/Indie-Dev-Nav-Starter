@@ -53,8 +53,15 @@ function renderTools(tools, highlightText = '') {
         let googleIcon = '';
         let yandexIcon = '';
         let fallbackSvg = '';
+        let finalUrl = tool.url;
+
         try {
             const u = new URL(tool.url);
+            
+            // 添加 UTM 参数
+            u.searchParams.set('utm_source', 'indiestarter.space');
+            finalUrl = u.href;
+
             originIcon = new URL('/favicon.ico', u.origin).href;
             // 使用 DuckDuckGo 的 ip3 服务（通常质量较好）
             duckIcon = `https://icons.duckduckgo.com/ip3/${u.hostname}.ico`;
@@ -81,7 +88,7 @@ function renderTools(tools, highlightText = '') {
         const onErrorChain = `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=null; this.src='${fallbackSvg}'}; this.src='${originIcon}'}; this.src='${yandexIcon}'}; this.src='${duckIcon}'};`;
 
         return `
-        <a href="${tool.url}" target="_blank" class="tool-card">
+        <a href="${finalUrl}" target="_blank" class="tool-card">
             <div class="tool-header">
                 <img class="tool-icon" src="${initialSrc}" alt="${tool.name} logo" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="${onErrorChain}" />
                 <div class="tool-info">

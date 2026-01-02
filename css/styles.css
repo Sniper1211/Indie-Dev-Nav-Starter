@@ -316,10 +316,11 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.9);
     padding: 6px;
     object-fit: contain;
     border: 1px solid var(--border);
+    transition: all 0.3s ease;
 }
 
 .tool-info {
