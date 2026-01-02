@@ -510,6 +510,11 @@ body {
     .search-box {
         margin-bottom: 2rem;
     }
+
+    .site-footer {
+        margin-left: 0;
+        width: 100%;
+    }
 }
 
 /* Scrollbar */
@@ -538,6 +543,12 @@ body {
     color: var(--text-muted);
     font-size: 0.9rem;
     padding-bottom: 2rem;
+    margin-left: 280px;
+    width: calc(100% - 280px);
+}
+
+.site-footer .container {
+    flex-direction: column;
 }
 
 .footer-content {
