@@ -5,6 +5,7 @@ const tools = [
         category: '开发工具',
         name: 'Visual Studio Code',
         url: 'https://code.visualstudio.com',
+        logo: 'https://code.visualstudio.com/assets/images/code-stable.png',
         tags: ['编辑器', '开源', '跨平台'],
         desc: '微软开发的轻量级但功能强大的代码编辑器，支持多种编程语言和扩展'  
     },
@@ -12,6 +13,7 @@ const tools = [
         category: '开发工具',
         name: 'GitHub',
         url: 'https://github.com',
+        logo: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
         tags: ['代码托管', '版本控制', '协作'],
         desc: '全球最大的代码托管平台，提供Git仓库托管服务'  
     },
@@ -93,6 +95,7 @@ const tools = [
         category: '网站建设',
         name: 'WordPress',
         url: 'https://wordpress.org',
+        logo: 'https://s.w.org/style/images/about/WordPress-logotype-wmark.png',
         tags: ['CMS', '博客', '插件生态'],
         desc: '全球最流行的内容管理系统，拥有丰富的主题和插件'  
     },
@@ -181,6 +184,7 @@ const tools = [
         category: 'AI与创新',
         name: 'ChatGPT',
         url: 'https://chat.openai.com',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
         tags: ['AI对话', '内容创作', '问答'],
         desc: 'OpenAI开发的大型语言模型，可用于内容创作、编程辅助等'  
     },
@@ -188,6 +192,7 @@ const tools = [
         category: 'AI与创新',
         name: 'Midjourney',
         url: 'https://www.midjourney.com',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Midjourney_Emblem.png',
         tags: ['AI绘画', '图像生成', '创意设计'],
         desc: '人工智能图像生成工具，通过文本描述创建高质量图像'  
     },
@@ -195,6 +200,7 @@ const tools = [
         category: 'AI与创新',
         name: 'Hugging Face',
         url: 'https://huggingface.co',
+        logo: 'https://huggingface.co/front/assets/huggingface_logo-noborder.svg',
         tags: ['AI模型', '机器学习', '开源'],
         desc: 'AI社区和模型库，提供开源模型和工具'  
     },
@@ -202,6 +208,7 @@ const tools = [
         category: 'AI与创新',
         name: 'Jasper',
         url: 'https://www.jasper.ai',
+        logo: 'https://unavatar.io/jasper.ai',
         tags: ['AI写作', '内容生成', '营销'],
         desc: 'AI内容创作平台，帮助快速生成高质量营销文案'  
     },
@@ -209,6 +216,7 @@ const tools = [
         category: 'AI与创新',
         name: 'Runway',
         url: 'https://runwayml.com',
+        logo: 'https://unavatar.io/runwayml.com',
         tags: ['视频编辑', 'AI创意', '内容生成'],
         desc: '创意AI工具，用于视频编辑和内容创作'  
     },
@@ -216,6 +224,7 @@ const tools = [
         category: 'AI与创新',
         name: 'Anthropic Claude',
         url: 'https://www.anthropic.com/claude',
+        logo: 'https://unavatar.io/anthropic.com',
         tags: ['AI助手', '对话', '内容生成'],
         desc: '先进的AI助手，专注于有用、无害和诚实的对话'  
     },
@@ -223,6 +232,7 @@ const tools = [
         category: 'AI与创新',
         name: 'Gemini',
         url: 'https://gemini.google.com',
+        logo: 'https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg',
         tags: ['AI对话', '多模态', 'Google'],
         desc: 'Google 开发的最强多模态 AI 模型，支持文本、代码、图片等多种输入'  
     },
@@ -230,6 +240,7 @@ const tools = [
         category: 'AI与创新',
         name: 'DeepSeek',
         url: 'https://www.deepseek.com',
+        logo: 'https://unavatar.io/deepseek.com',
         tags: ['AI对话', '代码生成', '开源'],
         desc: '深度求索开发的国产 AI 模型，代码能力出色，提供高性价比 API'  
     },
@@ -237,6 +248,7 @@ const tools = [
         category: 'AI与创新',
         name: 'Kimi',
         url: 'https://kimi.moonshot.cn',
+        logo: 'https://unavatar.io/moonshot.cn',
         tags: ['AI助手', '长文本', '文件分析'],
         desc: '月之暗面开发的智能助手，支持超长上下文阅读和文件解析'  
     },
@@ -244,6 +256,7 @@ const tools = [
         category: 'AI与创新',
         name: '通义千问',
         url: 'https://tongyi.aliyun.com',
+        logo: 'https://img.alicdn.com/imgextra/i4/O1CN01d8g2q31j6Zj1X1X1X_!!6000000004505-2-tps-200-200.png',
         tags: ['AI对话', '效率工具', '文档处理'],
         desc: '阿里云推出的大语言模型，集成通义听悟等多种效率工具'  
     },
@@ -251,6 +264,7 @@ const tools = [
         category: 'AI与创新',
         name: '即梦',
         url: 'https://jimeng.jianying.com',
+        logo: 'https://unavatar.io/jimeng.jianying.com',
         tags: ['AI绘画', '视频生成', '创意'],
         desc: '字节跳动推出的 AI 创作平台，支持高质量的图像和视频生成'  
     },
@@ -260,6 +274,7 @@ const tools = [
         category: '社区资源',
         name: 'Stack Overflow',
         url: 'https://stackoverflow.com',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Stack_Overflow_icon.svg',
         tags: ['问答', '编程', '技术社区'],
         desc: '全球最大的程序员问答社区，解决编程问题的宝库'  
     },
@@ -267,6 +282,7 @@ const tools = [
         category: '社区资源',
         name: 'Product Hunt',
         url: 'https://www.producthunt.com',
+        logo: 'https://unavatar.io/producthunt.com',
         tags: ['产品发布', '创新', '反馈'],
         desc: '发现和分享新产品的平台，获取早期用户和反馈'  
     },
@@ -274,6 +290,7 @@ const tools = [
         category: '社区资源',
         name: 'Indie Hackers',
         url: 'https://www.indiehackers.com',
+        logo: 'https://unavatar.io/indiehackers.com',
         tags: ['独立开发', '创业', '社区'],
         desc: '独立开发者和创业者社区，分享经验和故事'  
     },
@@ -281,6 +298,7 @@ const tools = [
         category: '社区资源',
         name: 'Dev.to',
         url: 'https://dev.to',
+        logo: 'https://unavatar.io/dev.to',
         tags: ['博客', '技术文章', '开发者社区'],
         desc: '开发者分享知识和经验的开放社区'  
     },
@@ -288,6 +306,7 @@ const tools = [
         category: '社区资源',
         name: 'Hacker News',
         url: 'https://news.ycombinator.com',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Y_Combinator_logo.svg',
         tags: ['科技新闻', '讨论', '创业'],
         desc: 'Y Combinator创建的科技和创业新闻聚合平台'  
     },
@@ -295,6 +314,7 @@ const tools = [
         category: '社区资源',
         name: 'Reddit r/programming',
         url: 'https://www.reddit.com/r/programming',
+        logo: 'https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-120x120.png',
         tags: ['编程', '讨论', '社区'],
         desc: 'Reddit上关于编程的大型社区，分享资源和讨论'  
     },
@@ -304,6 +324,7 @@ const tools = [
         category: '网站模板',
         name: 'ThemeForest',
         url: 'https://themeforest.net',
+        logo: 'https://unavatar.io/themeforest.net',
         tags: ['WordPress主题', '模板', '前端'],
         desc: '最大的WordPress主题和网站模板市场之一'  
     },
@@ -339,6 +360,7 @@ const tools = [
         category: '网站模板',
         name: 'Colorlib',
         url: 'https://colorlib.com/wp/templates',
+        logo: 'https://unavatar.io/colorlib.com',
         tags: ['免费模板', 'WordPress', '响应式'],
         desc: '提供免费和高质量的网站模板和WordPress主题'  
     },
@@ -399,6 +421,7 @@ const tools = [
         category: '支付',
         name: 'Stripe',
         url: 'https://stripe.com',
+        logo: 'https://unavatar.io/stripe.com',
         tags: ['支付网关', '订阅系统', '全球覆盖'],
         desc: '支持135种货币的全球化支付解决方案'  
     },
@@ -406,6 +429,7 @@ const tools = [
         category: '支付',
         name: 'PayPal',
         url: 'https://www.paypal.com',
+        logo: 'https://www.paypalobjects.com/webstatic/icon/pp258.png',
         tags: ['跨境支付', '安全可靠', '全球覆盖'],
         desc: '全球最大的在线支付平台之一，支持200多个国家和地区'  
     },
@@ -413,6 +437,7 @@ const tools = [
         category: '支付',
         name: 'Square',
         url: 'https://squareup.com',
+        logo: 'https://unavatar.io/squareup.com',
         tags: ['移动支付', 'POS系统', '电商集成'],
         desc: '创新的支付和商业解决方案提供商'  
     },
@@ -445,6 +470,7 @@ const tools = [
         category: '在线数据库',
         name: 'Supabase',
         url: 'https://supabase.com',
+        logo: 'https://unavatar.io/supabase.com',
         tags: ['PostgreSQL', 'BaaS', '开源'],
         desc: '开源的 Firebase 替代品，提供 PostgreSQL 数据库、认证、即时 API 等功能'  
     },
@@ -452,6 +478,7 @@ const tools = [
         category: '在线数据库',
         name: 'MongoDB Atlas',
         url: 'https://www.mongodb.com/atlas',
+        logo: 'https://unavatar.io/mongodb.com',
         tags: ['NoSQL', '文档数据库', '云服务'],
         desc: 'MongoDB 官方提供的全托管云数据库服务，支持多云部署'  
     },
@@ -459,6 +486,7 @@ const tools = [
         category: '在线数据库',
         name: 'PlanetScale',
         url: 'https://planetscale.com',
+        logo: 'https://unavatar.io/planetscale.com',
         tags: ['MySQL', 'Serverless', '分支管理'],
         desc: '基于 Vitess 的无服务器 MySQL 数据库平台，支持像 Git 一样的数据库分支管理'  
     },
@@ -466,6 +494,7 @@ const tools = [
         category: '在线数据库',
         name: 'Neon',
         url: 'https://neon.tech',
+        logo: 'https://unavatar.io/neon.tech',
         tags: ['PostgreSQL', 'Serverless', '云原生'],
         desc: '新一代无服务器 PostgreSQL，计算与存储分离，支持快速自动扩缩容'  
     },
@@ -473,6 +502,7 @@ const tools = [
         category: '在线数据库',
         name: 'Upstash',
         url: 'https://upstash.com',
+        logo: 'https://unavatar.io/upstash.com',
         tags: ['Redis', 'Kafka', 'Serverless'],
         desc: '专为无服务器应用设计的 Redis 和 Kafka 数据平台'  
     },
@@ -480,6 +510,7 @@ const tools = [
         category: '在线数据库',
         name: 'Turso',
         url: 'https://turso.tech',
+        logo: 'https://unavatar.io/turso.tech',
         tags: ['SQLite', 'Edge', '低延迟'],
         desc: '基于 libSQL 的边缘数据库，让数据更靠近用户，适合全球化应用'  
     }
