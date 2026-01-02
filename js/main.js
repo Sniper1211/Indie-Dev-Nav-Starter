@@ -54,6 +54,7 @@ function renderTools(tools, highlightText = '') {
         let yandexIcon = '';
         let fallbackSvg = '';
         let finalUrl = tool.url;
+        let customLogo = tool.logo; // 获取自定义 logo
 
         try {
             const u = new URL(tool.url);
@@ -83,9 +84,11 @@ function renderTools(tools, highlightText = '') {
             ? tool.name.replace(new RegExp(highlightText, 'gi'), match => `<mark>${match}</mark>`) 
             : tool.name;
 
-        // 调整加载顺序：优先使用 Google 高清图标 -> DuckDuckGo -> Yandex -> Origin
-        const initialSrc = googleIcon;
-        const onErrorChain = `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=null; this.src='${fallbackSvg}'}; this.src='${originIcon}'}; this.src='${yandexIcon}'}; this.src='${duckIcon}'};`;
+        // 调整加载顺序：优先使用自定义 Logo -> Google 高清图标 -> DuckDuckGo -> Yandex -> Origin
+        const initialSrc = customLogo || googleIcon;
+        const onErrorChain = customLogo 
+            ? `this.onerror=function(){this.src='${googleIcon}'; this.onerror=function(){this.src='${duckIcon}'; this.onerror=function(){this.src='${yandexIcon}'; this.onerror=function(){this.src='${originIcon}'; this.onerror=function(){this.src='${fallbackSvg}'; this.onerror=null;}}}}}`
+            : `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=null; this.src='${fallbackSvg}'}; this.src='${originIcon}'}; this.src='${yandexIcon}'}; this.src='${duckIcon}'};`;
 
         return `
         <a href="${finalUrl}" target="_blank" class="tool-card">
