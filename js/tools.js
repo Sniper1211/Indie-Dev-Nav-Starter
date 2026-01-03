@@ -5,7 +5,7 @@ const tools = [
         category: '开发工具',
         name: 'Visual Studio Code',
         url: 'https://code.visualstudio.com',
-        logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg',
         tags: ['编辑器', '开源', '跨平台'],
         desc: '微软开发的轻量级但功能强大的代码编辑器，支持多种编程语言和扩展'  
     },
@@ -256,7 +256,7 @@ const tools = [
         category: 'AI与创新',
         name: '通义千问',
         url: 'https://tongyi.aliyun.com',
-        logo: 'https://img.alicdn.com/imgextra/i4/O1CN01d8g2q31j6Zj1X1X1X_!!6000000004505-2-tps-200-200.png',
+        logo: 'https://avatars.githubusercontent.com/QwenLM',
         tags: ['AI对话', '效率工具', '文档处理'],
         desc: '阿里云推出的大语言模型，集成通义听悟等多种效率工具'  
     },
@@ -267,6 +267,14 @@ const tools = [
         logo: 'https://unavatar.io/jimeng.jianying.com',
         tags: ['AI绘画', '视频生成', '创意'],
         desc: '字节跳动推出的 AI 创作平台，支持高质量的图像和视频生成'  
+    },
+    {
+        category: 'AI与创新',
+        name: 'AnyGen',
+        url: 'https://www.anygen.io/home?invitation_code=AWQCKBR9BUIH53T',
+        logo: 'https://unavatar.io/anygen.io',
+        tags: ['AI应用平台', 'Chatbot', '企业级'],
+        desc: '企业级生成式 AI 应用全生命周期平台，支持快速构建数据驱动的 Chatbot'  
     },
     
     // 社区资源
@@ -353,6 +361,7 @@ const tools = [
         category: '网站模板',
         name: 'Bootstrap Themes',
         url: 'https://themes.getbootstrap.com',
+        logo: 'https://avatars.githubusercontent.com/twbs',
         tags: ['Bootstrap', '响应式', '前端框架'],
         desc: 'Bootstrap官方主题市场，提供高质量响应式模板'  
     },
