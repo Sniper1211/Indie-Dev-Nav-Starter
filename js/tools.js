@@ -178,6 +178,14 @@ const tools = [
         tags: ['关键词研究', 'SEO', '内容创意'],
         desc: '关键词研究和内容创意工具，提供竞争对手分析'  
     },
+    {
+        category: 'SEO与推广',
+        name: 'Expired Domains',
+        url: 'https://www.expireddomains.net',
+        logo: 'https://unavatar.io/expireddomains.net',
+        tags: ['域名', 'SEO', '老域名', '域名抢注'],
+        desc: '每日更新的过期域名查询平台，支持数百种顶级域名，是寻找老域名和SEO域名的利器'
+    },
     
     // AI与创新
     {
