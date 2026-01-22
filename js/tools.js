@@ -284,6 +284,14 @@ const tools = [
         tags: ['AI应用平台', 'Chatbot', '企业级'],
         desc: '企业级生成式 AI 应用全生命周期平台，支持快速构建数据驱动的 Chatbot'  
     },
+    {
+        category: 'AI与创新',
+        name: 'PentaPrompt',
+        url: 'https://www.pentaprompt.com/',
+        logo: 'https://unavatar.io/pentaprompt.com',
+        tags: ['AI提示词', '多模型', '效率工具'],
+        desc: '集成了多种 AI 模型的提示词与创作平台，支持自定义角色和上下文管理'
+    },
     
     // 社区资源
     {
