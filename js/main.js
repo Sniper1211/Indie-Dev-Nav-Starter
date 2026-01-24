@@ -32,6 +32,7 @@ function searchTools(e) {
 
 function renderTools(tools, highlightText = '') {
     const grid = document.getElementById('toolsGrid');
+    if (!grid) return; // Guard clause for pages without tool grid
 
     // 空状态处理
     if (tools.length === 0) {
@@ -112,27 +113,37 @@ function renderTools(tools, highlightText = '') {
 // 初始化逻辑
 function init() {
     // 生成分类导航
-    const categories = ['全部', ...new Set(tools.map(t => t.category))];
     const nav = document.getElementById('categoryNav');
-    nav.innerHTML = categories.map(cat => `
-        <button class="category-btn" data-category="${cat}">
-            ${getCategoryIcon(cat)}
-            ${cat}
-        </button>
-    `).join('');
+    if (nav) {
+        const categories = ['全部', ...new Set(tools.map(t => t.category))];
+        nav.innerHTML = categories.map(cat => `
+            <button class="category-btn" data-category="${cat}">
+                ${getCategoryIcon(cat)}
+                ${cat}
+            </button>
+        `).join('') + `
+            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                <a href="/ai/" class="category-btn" style="text-decoration: none; color: inherit; width: 100%;">
+                    <span class="category-icon">✨</span>
+                    AI专区
+                </a>
+            </div>
+        `;
 
-    // 默认显示"全部"分类
-    document.querySelector('.category-btn').classList.add('active');
-    filterTools('全部');
-    
-    // 事件绑定
-    document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterTools(btn.dataset.category);
+        // 默认显示"全部"分类
+        const firstBtn = document.querySelector('.category-btn');
+        if (firstBtn) firstBtn.classList.add('active');
+        filterTools('全部');
+        
+        // 事件绑定
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterTools(btn.dataset.category);
+            });
         });
-    });
+    }
 
     // 添加防抖函数
     function debounce(func, delay = 300) {
@@ -147,13 +158,15 @@ function init() {
     const searchInput = document.getElementById('searchInput');
     const clearBtn = document.getElementById('clearSearch');
 
-    searchInput.addEventListener('input', (e) => {
-        const val = e.target.value;
-        if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
-        debounce(searchTools)(e);
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
+            debounce(searchTools)(e);
+        });
+    }
 
-    if (clearBtn) {
+    if (clearBtn && searchInput) {
         clearBtn.addEventListener('click', () => {
             searchInput.value = '';
             clearBtn.style.display = 'none';

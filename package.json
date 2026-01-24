@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build:ai": "node scripts/build_ai_pages.js"
+  },
   "devDependencies": {
     "axios": "^1.8.4",
     "cheerio": "^1.0.0"

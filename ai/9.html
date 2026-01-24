@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimi | DevToolBox AI精选</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .ai-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+        .ai-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .back-nav {
+            padding: 1rem 0;
+            color: var(--text-secondary);
+        }
+        .back-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .back-nav a:hover {
+            color: var(--primary);
+        }
+        
+        /* Detail Page Specific */
+        .tool-detail-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tool-detail-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 20px;
+            padding: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+        }
+        .tool-detail-name {
+            font-size: 2.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 1rem;
+        }
+        .tool-detail-tags {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .tool-detail-tag {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+        .tool-detail-desc {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        .visit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .visit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+
+        /* Grid for Index */
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .ai-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        .ai-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+        .ai-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .ai-card-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: #fff;
+            padding: 4px;
+            object-fit: contain;
+        }
+        .ai-card-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .ai-card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="grid-overlay"></div>
+    </div>
+    <div class="container">
+    <div class="back-nav">
+        <a href="index.html">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            返回列表
+        </a>
+    </div>
+
+    <div class="tool-detail-card">
+        <img src="https://unavatar.io/moonshot.cn" alt="Kimi" class="tool-detail-logo" onerror="this.src='https://via.placeholder.com/120'">
+        <h1 class="tool-detail-name">Kimi</h1>
+        
+        <div class="tool-detail-tags">
+            <span class="tool-detail-tag"># AI助手</span><span class="tool-detail-tag"># 长文本</span><span class="tool-detail-tag"># 文件分析</span>
+        </div>
+
+        <p class="tool-detail-desc">月之暗面开发的智能助手，支持超长上下文阅读和文件解析</p>
+
+        <a href="https://kimi.moonshot.cn" target="_blank" class="visit-btn">
+            访问官网
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
+        </a>
+    </div>
+    </div>
+    <footer class="site-footer" style="margin-left: 0; width: 100%; margin-top: 4rem;">
+        <div class="container">
+            <div class="footer-copyright" style="text-align: center;">
+                <p>© 2026 DevToolBox. Made with ❤️ for AI.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+    

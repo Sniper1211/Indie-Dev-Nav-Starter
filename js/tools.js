@@ -191,6 +191,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'ChatGPT',
+        id: 1,
         url: 'https://chat.openai.com',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
         tags: ['AI对话', '内容创作', '问答'],
@@ -199,6 +200,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'Midjourney',
+        id: 2,
         url: 'https://www.midjourney.com',
         logo: 'https://avatars.githubusercontent.com/midjourney',
         tags: ['AI绘画', '图像生成', '创意设计'],
@@ -207,6 +209,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'Hugging Face',
+        id: 3,
         url: 'https://huggingface.co',
         logo: 'https://huggingface.co/front/assets/huggingface_logo-noborder.svg',
         tags: ['AI模型', '机器学习', '开源'],
@@ -215,6 +218,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'Jasper',
+        id: 4,
         url: 'https://www.jasper.ai',
         logo: 'https://unavatar.io/jasper.ai',
         tags: ['AI写作', '内容生成', '营销'],
@@ -223,6 +227,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'Runway',
+        id: 5,
         url: 'https://runwayml.com',
         logo: 'https://unavatar.io/runwayml.com',
         tags: ['视频编辑', 'AI创意', '内容生成'],
@@ -231,6 +236,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'Anthropic Claude',
+        id: 6,
         url: 'https://www.anthropic.com/claude',
         logo: 'https://unavatar.io/anthropic.com',
         tags: ['AI助手', '对话', '内容生成'],
@@ -239,6 +245,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'Gemini',
+        id: 7,
         url: 'https://gemini.google.com',
         logo: 'https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg',
         tags: ['AI对话', '多模态', 'Google'],
@@ -247,6 +254,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'DeepSeek',
+        id: 8,
         url: 'https://www.deepseek.com',
         logo: 'https://avatars.githubusercontent.com/deepseek-ai',
         tags: ['AI对话', '代码生成', '开源'],
@@ -255,6 +263,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'Kimi',
+        id: 9,
         url: 'https://kimi.moonshot.cn',
         logo: 'https://unavatar.io/moonshot.cn',
         tags: ['AI助手', '长文本', '文件分析'],
@@ -263,6 +272,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: '通义千问',
+        id: 10,
         url: 'https://tongyi.aliyun.com',
         logo: 'https://avatars.githubusercontent.com/QwenLM',
         tags: ['AI对话', '效率工具', '文档处理'],
@@ -271,6 +281,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: '即梦',
+        id: 11,
         url: 'https://jimeng.jianying.com',
         logo: 'https://unavatar.io/jimeng.jianying.com',
         tags: ['AI绘画', '视频生成', '创意'],
@@ -279,6 +290,7 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'AnyGen',
+        id: 12,
         url: 'https://www.anygen.io/home?invitation_code=AWQCKBR9BUIH53T',
         logo: 'https://unavatar.io/anygen.io',
         tags: ['AI应用平台', 'Chatbot', '企业级'],
@@ -287,10 +299,20 @@ const tools = [
     {
         category: 'AI与创新',
         name: 'PentaPrompt',
+        id: 13,
         url: 'https://www.pentaprompt.com/',
         logo: 'https://unavatar.io/pentaprompt.com',
         tags: ['AI提示词', '多模型', '效率工具'],
         desc: '集成了多种 AI 模型的提示词与创作平台，支持自定义角色和上下文管理'
+    },
+    {
+        category: 'AI与创新',
+        name: 'Raphael',
+        id: 14,
+        url: 'https://raphael.app/zh',
+        logo: 'https://unavatar.io/raphael.app',
+        tags: ['AI绘画', '图像生成', '免费', '无需注册'],
+        desc: '完全免费且无限使用的 AI 图像生成器，基于 FLUX 模型，无需注册即可生成高质量图像'
     },
     
     // 社区资源
@@ -556,3 +578,8 @@ const categoryIcons = {
     '合规': '⚖️',
     '在线数据库': '🗄️'
 };
+
+// 兼容 Node.js 环境导出
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { tools, categoryIcons };
+}
