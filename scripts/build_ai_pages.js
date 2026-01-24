@@ -234,7 +234,7 @@ ${commonBodyStart}
         ${aiTools.map(tool => {
             const slug = tool.id || slugify(tool.name);
             return `
-        <a href="${slug}.html" class="tool-card" data-name="${tool.name.toLowerCase()}" data-desc="${tool.desc.toLowerCase()}" data-tags="${tool.tags.join(',').toLowerCase()}">
+        <a href="/ai/${slug}.html" class="tool-card" data-name="${tool.name.toLowerCase()}" data-desc="${tool.desc.toLowerCase()}" data-tags="${tool.tags.join(',').toLowerCase()}">
             <div class="tool-header">
                 <img src="${tool.logo}" alt="${tool.name}" class="tool-icon" onerror="this.src='https://via.placeholder.com/48'">
                 <div class="tool-info">
@@ -320,7 +320,7 @@ aiTools.forEach(tool => {
 ${getHead(tool.name)}
 ${commonBodyStart}
     <div class="back-nav">
-        <a href="index.html">
+        <a href="/ai/">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
             </svg>
