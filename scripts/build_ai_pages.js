@@ -9,6 +9,17 @@ if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
 }
 
+// Helper to escape HTML
+function escapeHtml(unsafe) {
+    if (!unsafe) return '';
+    return unsafe.toString()
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
+
 // Helper to slugify name
 function slugify(text) {
     return text.toString().toLowerCase()
@@ -234,17 +245,17 @@ ${commonBodyStart}
         ${aiTools.map(tool => {
             const slug = tool.id || slugify(tool.name);
             return `
-        <a href="/ai/${slug}.html" class="tool-card" data-name="${tool.name.toLowerCase()}" data-desc="${tool.desc.toLowerCase()}" data-tags="${tool.tags.join(',').toLowerCase()}">
+        <a href="/ai/${slug}.html" class="tool-card" data-name="${escapeHtml(tool.name.toLowerCase())}" data-desc="${escapeHtml(tool.desc.toLowerCase())}" data-tags="${escapeHtml(tool.tags.join(',').toLowerCase())}">
             <div class="tool-header">
-                <img src="${tool.logo}" alt="${tool.name}" class="tool-icon" onerror="this.src='https://via.placeholder.com/48'">
+                <img src="${tool.logo}" alt="${escapeHtml(tool.name)}" class="tool-icon" onerror="this.src='https://via.placeholder.com/48'">
                 <div class="tool-info">
-                    <div class="tool-title">${tool.name}</div>
-                    <div class="tool-category-tag">${tool.category}</div>
+                    <div class="tool-title">${escapeHtml(tool.name)}</div>
+                    <div class="tool-category-tag">${escapeHtml(tool.category)}</div>
                 </div>
             </div>
-            <p class="tool-description">${tool.desc}</p>
+            <p class="tool-description">${escapeHtml(tool.desc)}</p>
             <div class="tool-footer">
-                ${tool.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                ${tool.tags.map(tag => `<span class="tool-tag">${escapeHtml(tag)}</span>`).join('')}
             </div>
         </a>
         `}).join('')}
@@ -317,7 +328,7 @@ console.log('Generated ai/index.html');
 aiTools.forEach(tool => {
     const slug = tool.id || slugify(tool.name);
     const detailContent = `
-${getHead(tool.name)}
+${getHead(escapeHtml(tool.name))}
 ${commonBodyStart}
     <div class="back-nav">
         <a href="/ai/">
@@ -329,14 +340,14 @@ ${commonBodyStart}
     </div>
 
     <div class="tool-detail-card">
-        <img src="${tool.logo}" alt="${tool.name}" class="tool-detail-logo" onerror="this.src='https://via.placeholder.com/120'">
-        <h1 class="tool-detail-name">${tool.name}</h1>
+        <img src="${tool.logo}" alt="${escapeHtml(tool.name)}" class="tool-detail-logo" onerror="this.src='https://via.placeholder.com/120'">
+        <h1 class="tool-detail-name">${escapeHtml(tool.name)}</h1>
         
         <div class="tool-detail-tags">
-            ${tool.tags.map(tag => `<span class="tool-detail-tag"># ${tag}</span>`).join('')}
+            ${tool.tags.map(tag => `<span class="tool-detail-tag"># ${escapeHtml(tag)}</span>`).join('')}
         </div>
 
-        <p class="tool-detail-desc">${tool.desc}</p>
+        <p class="tool-detail-desc">${escapeHtml(tool.desc)}</p>
 
         <a href="${tool.url}" target="_blank" class="visit-btn">
             访问官网

@@ -30,6 +30,16 @@ function searchTools(e) {
     renderTools(results, keyword); // 添加关键字参数
 }
 
+function escapeHtml(unsafe) {
+    if (!unsafe) return '';
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
+
 function renderTools(tools, highlightText = '') {
     const grid = document.getElementById('toolsGrid');
     if (!grid) return; // Guard clause for pages without tool grid
@@ -52,7 +62,6 @@ function renderTools(tools, highlightText = '') {
         let originIcon = '';
         let duckIcon = '';
         let googleIcon = '';
-        let yandexIcon = '';
         let fallbackSvg = '';
         let finalUrl = tool.url;
         let customLogo = tool.logo; // 获取自定义 logo
@@ -64,13 +73,11 @@ function renderTools(tools, highlightText = '') {
             u.searchParams.set('utm_source', 'indiestarter.space');
             finalUrl = u.href;
 
-            originIcon = new URL('/favicon.ico', u.origin).href;
             // 使用 DuckDuckGo 的 ip3 服务（通常质量较好）
             duckIcon = `https://icons.duckduckgo.com/ip3/${u.hostname}.ico`;
             // Google Favicon 服务，强制请求 128px 高清图标
             googleIcon = `https://www.google.com/s2/favicons?sz=128&domain_url=${encodeURIComponent(u.origin)}`;
-            // Yandex Favicon 服务（有时能抓到特殊的图标）
-            yandexIcon = `https://favicon.yandex.net/favicon/${u.hostname}`;
+            
             fallbackSvg = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
                 `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">\n` +
                 `<rect width="48" height="48" rx="8" fill="#1e293b"/>\n` +
@@ -81,28 +88,29 @@ function renderTools(tools, highlightText = '') {
             // 忽略解析错误，使用占位
         }
 
+        const safeName = escapeHtml(tool.name);
         const titleHtml = highlightText 
-            ? tool.name.replace(new RegExp(highlightText, 'gi'), match => `<mark>${match}</mark>`) 
-            : tool.name;
+            ? safeName.replace(new RegExp(escapeHtml(highlightText), 'gi'), match => `<mark>${match}</mark>`) 
+            : safeName;
 
-        // 调整加载顺序：优先使用自定义 Logo -> Google 高清图标 -> DuckDuckGo -> Yandex -> Origin
+        // 调整加载顺序：优先使用自定义 Logo -> Google 高清图标 -> DuckDuckGo -> Fallback
         const initialSrc = customLogo || googleIcon;
         const onErrorChain = customLogo 
-            ? `this.onerror=function(){this.src='${googleIcon}'; this.onerror=function(){this.src='${duckIcon}'; this.onerror=function(){this.src='${yandexIcon}'; this.onerror=function(){this.src='${originIcon}'; this.onerror=function(){this.src='${fallbackSvg}'; this.onerror=null;}}}}}`
-            : `this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=function(){this.onerror=null; this.src='${fallbackSvg}'}; this.src='${originIcon}'}; this.src='${yandexIcon}'}; this.src='${duckIcon}'};`;
+            ? `this.onerror=function(){this.src='${googleIcon}'; this.onerror=function(){this.src='${duckIcon}'; this.onerror=function(){this.src='${fallbackSvg}'; this.onerror=null;}}}`
+            : `this.onerror=function(){this.src='${duckIcon}'; this.onerror=function(){this.src='${fallbackSvg}'; this.onerror=null;}}`;
 
         return `
         <a href="${finalUrl}" target="_blank" class="tool-card">
             <div class="tool-header">
-                <img class="tool-icon" src="${initialSrc}" alt="${tool.name} logo" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="${onErrorChain}" />
+                <img class="tool-icon" src="${initialSrc}" alt="${safeName} logo" decoding="async" loading="lazy" referrerpolicy="no-referrer" onerror="${onErrorChain}" />
                 <div class="tool-info">
                     <div class="tool-title">${titleHtml}</div>
-                    <div class="tool-category-tag">${tool.category}</div>
+                    <div class="tool-category-tag">${escapeHtml(tool.category)}</div>
                 </div>
             </div>
-            <p class="tool-description">${tool.desc}</p>
+            <p class="tool-description">${escapeHtml(tool.desc)}</p>
             <div class="tool-footer">
-                ${tool.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+                ${tool.tags.map(tag => `<span class="tool-tag">${escapeHtml(tag)}</span>`).join('')}
             </div>
         </a>`;
     }).join('');
