@@ -39,9 +39,6 @@ function getHead(title, stylesPath = '../css/styles.css') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title} | DevToolBox AI精选</title>
     
-    <!-- Google Search Console Verification Placeholder -->
-    <meta name="google-site-verification" content="YOUR_GSC_VERIFICATION_CODE" />
-
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0DWH715KS3"></script>
     <script>
